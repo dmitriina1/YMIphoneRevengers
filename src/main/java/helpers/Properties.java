@@ -13,8 +13,6 @@ public class Properties {
     /**
      * Экземпляр интерфейса {@code TestsProperties}, который содержит значения конфигурационных параметров.
      * Параметры загружаются из файла конфигурации, определенного в {@code TestsProperties}.
-     *
-     * @author Наливайко Дмитрий
      */
     public static TestsProperties testsProperties = ConfigFactory.create(TestsProperties.class);
 

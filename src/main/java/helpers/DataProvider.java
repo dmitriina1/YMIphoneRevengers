@@ -2,6 +2,8 @@ package helpers;
 
 import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.params.provider.Arguments;
+import pages.YandexAfterSearch;
+import pages.YandexBeforeSearch;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -11,7 +13,6 @@ import java.util.stream.Stream;
  * Используется в тестах для генерации различных наборов данных, необходимых для проверки функциональности.
  *
  * @author Наливайко Дмитрий
- *
  */
 public class DataProvider {
 
@@ -21,13 +22,11 @@ public class DataProvider {
      *
      * @return поток значений параметров, содержащий название маркетплейса, категорию, подкатегорию,
      *         минимальную и максимальную цену, список брендов и количество ожидаемых результатов.
-     *
-     * @author Наливайко Дмитрий
      */
     public static Stream<Arguments> providerCheckingMarket(){
-        List<String> brandsNames = List.of("Lenovo", "HP");
+        List<String> brandsNames = List.of("Apple");
         return Stream.of(
-                Arguments.of("Яндекс Маркет", "Электроника", "Ноутбуки", "10000", "30000", brandsNames, 12)
+                Arguments.of("Яндекс Маркет", "Электроника", "Смартфоны", brandsNames)
         );
     }
 }

@@ -20,8 +20,6 @@ public interface TestsProperties extends Config{
      * Возвращает URL Яндекс.Маркета, используемый в тестах.
      *
      * @return URL Яндекс.Маркета
-     *
-     * @author Наливайко Дмитрий
      */
     @Config.Key("yandexMarket.url")
     String yandexMarketUrl();
@@ -30,10 +28,16 @@ public interface TestsProperties extends Config{
      * Возвращает значение таймаута по умолчанию для тестов.
      *
      * @return таймаут в миллисекундах
-     *
-     * @author Наливайко Дмитрий
      */
     @Config.Key("default.timeout")
     int defaultTimeout();
+
+    /**
+     * Возвращает значение таймаута по умолчанию для тестов.
+     *
+     * @return таймаут в миллисекундах
+     */
+    @Config.Key("default.browser")
+    String defaultBrowser();
 
 }

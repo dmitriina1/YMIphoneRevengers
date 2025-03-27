@@ -7,25 +7,40 @@ import helpers.CustomAllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import static com.codeborne.selenide.Selenide.webdriver;
+import static helpers.Properties.testsProperties;
 
+/**
+ * Класс {@code BaseTest} содержит базовые настройки для тестов,
+ * включая конфигурацию браузера и обработку логов.
+ *
+ * @author Наливайко Дмитрий
+ */
 public class BaseTest {
 
+    /**
+     * Метод {@code setup} настраивает сохранение скриншотов и исходного кода страницы.
+     */
     @BeforeAll
-    public static void setup(){
+    public static void setup() {
         SelenideLogger.addListener("AllureSelenide",
                 new CustomAllureSelenide().screenshots(true).savePageSource(true));
     }
 
+    /**
+     * Метод {@code option} настраивает параметры браузера перед каждым тестом:
+     * - Таймаут ожидания: 30 секунд
+     * - Браузер: Chrome
+     * - Отключение расширений
+     * - Стратегия загрузки страницы: "none"
+     */
     @BeforeEach
-    public void option(){
-        Configuration.timeout =30000;
-        Configuration.browser = "chrome";
+    public void option() {
+        Configuration.timeout = testsProperties.defaultTimeout();
+        Configuration.browser = testsProperties.defaultBrowser();
         Configuration.browserSize = null;
 
         ChromeOptions options = new ChromeOptions();
@@ -37,6 +52,9 @@ public class BaseTest {
         Configuration.browserCapabilities = capabilities;
     }
 
+    /**
+     * Метод {@code close} закрывает веб-драйвер после каждого теста.
+     */
     @AfterEach
     public void close() {
         com.codeborne.selenide.Selenide.closeWebDriver();
